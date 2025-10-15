@@ -5,7 +5,6 @@ window.translationApiCache = {};
 async function getApiTranslatedText(spanishText) {
 	if (window.translationApiCache[spanishText]) {
 		// Either a finished translation (string) or a pending promise
-		console.log("recovered cached item.");
 		return await window.translationApiCache[spanishText];
 	}
 
