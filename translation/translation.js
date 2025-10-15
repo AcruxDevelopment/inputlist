@@ -1,5 +1,5 @@
 // Variable global donde se guardará el contenido del archivo JSON del idioma
-let langText = null;
+window.langText = null;
 
 // ------------------------------------------------------------
 // FUNCION: getTranslatedText
@@ -14,7 +14,7 @@ function getTranslatedText(elementLangKey)
     const elementLangKeyParts = elementLangKey.split('/');
 
     // Comienza desde el objeto completo del idioma
-    let text = langText;
+    let text = window.langText;
 
     // Recorre cada parte de la ruta paso a paso
     // Para llegar al texto final dentro del JSON
@@ -36,10 +36,10 @@ async function setLang(lang)
 {
     // Carga el archivo JSON del idioma según el valor de 'lang'
     // Por ejemplo: si lang = "en", se carga "lang/en.json"
-    langText = await fetch(`lang/${lang}.json`);
+    window.langText = await fetch(`lang/${lang}.json`);
 
     // Convierte el archivo JSON en un objeto de JavaScript
-    langText = await langText.json();
+    window.langText = await langText.json();
 
     // Busca en el documento HTML todos los elementos
     // que tengan el atributo personalizado "tlang"
