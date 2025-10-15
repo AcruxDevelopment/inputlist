@@ -1,6 +1,6 @@
 // Variable global donde se guardará el contenido del archivo JSON del idioma
-window.langText = null;
-window.translationApiCache = {};
+if(!window.langText) window.langText = null;
+if(!window.translationApiCache) window.translationApiCache = {};
 
 async function getApiTranslatedText(spanishText) {
 	if (window.translationApiCache[spanishText]) {
@@ -9,7 +9,7 @@ async function getApiTranslatedText(spanishText) {
 	}
 
 	const sourceLang = 'es';
-	const targetLang = 'en';
+	const targetLang = window.lang;
 	const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(spanishText)}`;
 
 	// Create a promise and store it immediately to prevent duplicates
@@ -69,6 +69,9 @@ function getTranslatedText(elementLangKey) {
 // y cambia el texto de todos los elementos HTML que tengan el atributo "tlang"
 // por su traducción correspondiente.
 async function setLang(lang) {
+	window.lang = lang;
+	window.translationApiCache = {};
+
 	// Carga el archivo JSON del idioma según el valor de 'lang'
 	// Por ejemplo: si lang = "en", se carga "lang/en.json"
 	window.langText = await fetch(`lang/${lang}.json`);
@@ -99,6 +102,9 @@ async function setLang(lang) {
 		if (elementTextLocation == 'inner') translatableElement.innerText = translatedText;
 		else if (elementTextLocation == 'value') translatableElement.value = translatedText;
 	});
+
+	const langChangedEvent = new CustomEvent("langchanged", {});
+	document.dispatchEvent(langChangedEvent);
 }
 
 // ------------------------------------------------------------
@@ -106,4 +112,8 @@ async function setLang(lang) {
 // ------------------------------------------------------------
 // Se llama a la función para establecer el idioma inicial de la página.
 // En este caso, 'en' (inglés).
-setLang('en');
+window.lang = 'es';
+
+document.addEventListener('DOMContentLoaded', e => {
+	setLang(window.lang);
+})

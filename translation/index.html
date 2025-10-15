@@ -17,8 +17,10 @@
     <p name="api-translated-p">---</p>
 
     <script>
-        document.querySelectorAll('[name="api-translated-p"]').forEach(async p => {
-            p.innerText = await getApiTranslatedText('Programacion');
+        document.querySelectorAll('[name="api-translated-p"]').forEach(p => {
+            document.addEventListener('langchanged', async e => {
+                p.innerText = await getApiTranslatedText('Programacion');
+            });
         });
     </script>
 </body>
