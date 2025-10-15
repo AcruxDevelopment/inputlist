@@ -23,7 +23,7 @@ div[name="container"] {
 }
 
 /* Contenedor de inputs */
-div[name="input-container"] > div{
+div[name="input-container"] > div {
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -38,9 +38,7 @@ div[name^=""] {
 }
 
 /* Inputs y selects: ocupan todo el ancho */
-input[type="number"],
-input[type="text"],
-select {
+div[name="input-container"] > div > :first-child{
     flex: 1;
     padding: 8px 10px;
     font-size: 0.95rem;
