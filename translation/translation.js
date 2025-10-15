@@ -24,9 +24,9 @@ async function getApiTranslatedText(spanishText) {
 			window.translationApiCache[spanishText] = englishText;
 			return englishText;
 		} catch (error) {
-			console.error('Translation failed:', error);
+			console.error('Translation failed:', error, " original text returned instead.");
 			delete window.translationApiCache[spanishText]; // allow retry next time
-			return null;
+			return spanishText;
 		}
 	})();
 
