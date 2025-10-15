@@ -1,6 +1,11 @@
 // Variable global donde se guardará el contenido del archivo JSON del idioma
 if(!window.langText) window.langText = null;
 if(!window.translationApiCache) window.translationApiCache = {};
+if(!window.lang) window.lang = 'es';
+
+document.addEventListener('DOMContentLoaded', e => {
+	setLang(window.lang);
+})
 
 async function getApiTranslatedText(spanishText) {
 	if (window.translationApiCache[spanishText]) {
@@ -106,14 +111,3 @@ async function setLang(lang) {
 	const langChangedEvent = new CustomEvent("langchanged", {});
 	document.dispatchEvent(langChangedEvent);
 }
-
-// ------------------------------------------------------------
-// LLAMADA INICIAL
-// ------------------------------------------------------------
-// Se llama a la función para establecer el idioma inicial de la página.
-// En este caso, 'en' (inglés).
-window.lang = 'es';
-
-document.addEventListener('DOMContentLoaded', e => {
-	setLang(window.lang);
-})
