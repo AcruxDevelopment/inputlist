@@ -10,5 +10,16 @@
     <button onclick="setLang('es')">Es</button>
     <h1 tlang="index.php/title"></h1>
     <script src="translation.js"></script>
+    <script>
+        async function f()
+        {
+            let a = await translateSpanishToEnglish("Programacion Full Stack");
+            console.log(a);
+            let b = await translateSpanishToEnglish("Filosofia");
+            console.log(b);
+        }
+        
+        f();
+    </script>
 </body>
 </html>
