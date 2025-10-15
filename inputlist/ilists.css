@@ -1,0 +1,107 @@
+/* ============================
+   ESTILO MEJORADO: IList Suplier
+   ============================ */
+
+
+
+/* Título */
+div[ilist-suplier] h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Contenedor principal */
+div[name="container"] {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 12px;
+    gap: 10px;
+}
+
+/* Contenedor de inputs */
+div[name="input-container"] > div{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+/* Cada fila de input */
+div[name^=""] {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+}
+
+/* Inputs y selects: ocupan todo el ancho */
+input[type="number"],
+input[type="text"],
+select {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    border: 1px solid #bbb;
+    outline: none;
+    height: 36px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+input:focus,
+select:focus {
+    border-color: #007bff;
+}
+
+/* Botón eliminar: cuadrado */
+button[name="button-delete"] {
+    width: 36px;
+    height: 36px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+button[name="button-delete"]:hover {
+    background-color: #c0392b;
+}
+
+/* Botón agregar: rectangular y ocupa todo el ancho */
+button[name="button-add"] {
+    width: 100%;
+    height: 40px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease;
+}
+
+button[name="button-add"]:hover {
+    background-color: #0056b3;
+}
+
+/* Animación sutil al agregar elemento */
+div[name^=""] {
+    animation: appear 0.2s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
